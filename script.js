@@ -1,3 +1,8 @@
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+    .then(() => console.log('Service Worker зарегистрирован'))
+    .catch((err) => console.log('Ошибка регистрации SW:', err));
+}
 let anchorDate = localStorage.getItem('anchorDate');
 let customShifts = JSON.parse(localStorage.getItem('customShifts')) || {};
 let viewDate = new Date(); 
@@ -171,5 +176,6 @@ function closeModals() {
 
 document.getElementById('prevMonth').onclick = () => { viewDate.setMonth(viewDate.getMonth() - 1); renderCalendar(); };
 document.getElementById('nextMonth').onclick = () => { viewDate.setMonth(viewDate.getMonth() + 1); renderCalendar(); };
+
 
 init();
