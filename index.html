@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Календарь Кости</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="manifest" href="manifest.json">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="График Кости">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <meta name="theme-color" content="#f4f7f6">
+</head>
+<body>
+
+<div id="setupModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h2>Добро пожаловать!</h2>
+        <p>Выбери <b>первые два рабочих дня</b> подряд в текущем месяце:</p>
+        <div id="setupGrid" class="grid small-grid"></div>
+        <button id="saveSetup" disabled>Сохранить график</button>
+    </div>
+</div>
+
+<div id="dayActionModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h3 id="selectedDayTitle">День</h3>
+        <button onclick="setDayStatus('work')">Рабочий день</button>
+        <button onclick="setDayStatus('rest')">Выходной</button>
+        <button onclick="openSwapDialog()">Поменялся сменой</button>
+        <button onclick="closeModals()">Отмена</button>
+    </div>
+</div>
+
+<div id="swapModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h3>На какой день меняемся?</h3>
+        <div class="setting-row">
+            <label>Месяц:</label>
+            <select id="swapMonthSelect"></select>
+        </div>
+        <div id="swapGrid" class="grid small-grid"></div>
+        <button onclick="closeModals()">Отмена</button>
+    </div>
+</div>
+
+<div id="app">
+    <header>
+        <button id="prevMonth"><-</button>
+        <div style="text-align: center;">
+            <h1 style="margin: 0; font-size: 0.9rem; color: #888;">Календарь Кости</h1>
+            <h2 id="monthTitle" style="margin: 0;">Март 2026</h2>
+        </div>
+        <button id="nextMonth">-></button>
+    </header>
+
+    <div class="weekdays">
+        <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+    </div>
+
+    <div id="calendarGrid" class="grid"></div>
+
+    <div class="controls">
+        <div id="todayStatus" class="status-card"></div>
+        <button onclick="localStorage.clear(); location.reload();" style="margin-top: 15px; font-size: 0.8rem;">Сбросить всё</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

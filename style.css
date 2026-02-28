@@ -1,0 +1,173 @@
+:root {
+    --work-color: #FFBABA; /* Красный для работы */
+    --rest-color: #C7F9CC; /* Зеленый для выходного */
+    --shift-color: #BBDEFB; /* Голубой для замены */
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#app {
+    background: white;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#monthTitle {
+    margin: 0;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 500;
+    transition: transform 0.1s;
+    user-select: none;
+}
+
+.day:active {
+    transform: scale(0.9);
+}
+
+.work { background-color: var(--work-color); color: #7F0000; }
+.rest { background-color: var(--rest-color); color: #004B23; }
+.empty { visibility: hidden; }
+
+.controls {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #eee;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#settingsBtn {
+    background-color: #333;
+    color: white;
+}
+
+#loginBtn {
+    background-color: #4285F4; /* Цвет Google */
+    color: white;
+}
+
+.shift { background-color: var(--shift-color); color: #002D54; border: 2px solid #90CAF9; }
+
+/* Выделение сегодняшнего дня */
+.today {
+    border: 3px solid #000 !important; /* Черная жирная рамка */
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    z-index: 1; /* Чтобы рамка была поверх соседей */
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    background: #eee;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+input[type="date"] {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.status-card {
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+/* Цвета для карточки статуса */
+.status-work { background-color: var(--work-color); color: #7F0000; }
+.status-rest { background-color: var(--rest-color); color: #004B23; }
+.status-shift { background-color: var(--shift-color); color: #002D54; }
+
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: white; padding: 20px; border-radius: 15px;
+    width: 90%; max-width: 350px; text-align: center;
+}
+.modal-content button {
+    width: 100%; margin: 5px 0; padding: 12px;
+}
+.small-grid { gap: 5px; margin-bottom: 15px; }
+.selected-setup { background-color: var(--work-color) !important; border: 2px solid red; }
+
+select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: 1rem;
+    background: white;
+}
+
+h1 {
+    font-weight: 400;
+    letter-spacing: 1px;
+}
